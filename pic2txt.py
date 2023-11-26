@@ -8,8 +8,19 @@ Created on Sun Nov 26 12:16:02 2023
 from PIL import Image
 import os
 
-rightPicNumber=6
-straightPicNumber=8
+
+folder_path = 'imageForTraining/right/'
+# List all files in the folder
+files = os.listdir(folder_path)
+# Count the number of files
+rightPicNumber = len(files)
+
+folder_path = 'imageForTraining/straight/'
+# List all files in the folder
+files = os.listdir(folder_path)
+# Count the number of files
+straightPicNumber = len(files)
+
 
 # Open the image
 input_dir = 'imageForTraining/right/'
