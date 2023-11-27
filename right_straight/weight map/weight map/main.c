@@ -18,10 +18,10 @@
 #define STRAIGHTBIAS 0
 #define RIGHTBIAS 0
 
-void writeMatrixToFile(const char* filename, int matrix[ROWS][COLS]);
+void writeMatrixToFile(const char* filename, int** matrix);
 int hadamardSum(int staticMatrix[ROWS][COLS], int** mallocMatrix);
-void matrixAdd(int src[ROWS][COLS], int destination[ROWS][COLS]);
-void matrixMinus(int src[ROWS][COLS], int destination[ROWS][COLS]);
+void matrixAdd(int src[ROWS][COLS], int** destination);
+void matrixMinus(int src[ROWS][COLS], int** destination);
 
 
 int main(void) {

@@ -1,20 +1,21 @@
 ﻿  main.c
-G:\auto-pilot\right_straight\weight map\weight map\main.c(78,34): warning C4047: '函式': 'int (*)[128]' 與 'int *' 間接取值的層級不同
-G:\auto-pilot\right_straight\weight map\weight map\main.c(78,34): warning C4024: 'hadamardSum': 型式和實質參數 1 不同的類型
-G:\auto-pilot\right_straight\weight map\weight map\main.c(85,19): warning C4047: '函式': 'int (*)[128]' 與 'int *' 間接取值的層級不同
-G:\auto-pilot\right_straight\weight map\weight map\main.c(85,19): warning C4024: 'matrixAdd': 型式和實質參數 1 不同的類型
-G:\auto-pilot\right_straight\weight map\weight map\main.c(87,37): warning C4047: '函式': 'int (*)[128]' 與 'int *' 間接取值的層級不同
-G:\auto-pilot\right_straight\weight map\weight map\main.c(87,37): warning C4024: 'hadamardSum': 型式和實質參數 1 不同的類型
-G:\auto-pilot\right_straight\weight map\weight map\main.c(90,21): warning C4047: '函式': 'int (*)[128]' 與 'int *' 間接取值的層級不同
-G:\auto-pilot\right_straight\weight map\weight map\main.c(90,21): warning C4024: 'matrixMinus': 型式和實質參數 1 不同的類型
-G:\auto-pilot\right_straight\weight map\weight map\main.c(98,37): warning C4047: '函式': 'int (*)[128]' 與 'int *' 間接取值的層級不同
-G:\auto-pilot\right_straight\weight map\weight map\main.c(98,37): warning C4024: 'hadamardSum': 型式和實質參數 1 不同的類型
-G:\auto-pilot\right_straight\weight map\weight map\main.c(101,24): warning C4047: '函式': 'int (*)[128]' 與 'int *' 間接取值的層級不同
-G:\auto-pilot\right_straight\weight map\weight map\main.c(101,24): warning C4024: 'matrixMinus': 型式和實質參數 1 不同的類型
-G:\auto-pilot\right_straight\weight map\weight map\main.c(107,40): warning C4047: '函式': 'int (*)[128]' 與 'int *' 間接取值的層級不同
-G:\auto-pilot\right_straight\weight map\weight map\main.c(107,40): warning C4024: 'hadamardSum': 型式和實質參數 1 不同的類型
-G:\auto-pilot\right_straight\weight map\weight map\main.c(114,22): warning C4047: '函式': 'int (*)[128]' 與 'int *' 間接取值的層級不同
-G:\auto-pilot\right_straight\weight map\weight map\main.c(114,22): warning C4024: 'matrixAdd': 型式和實質參數 1 不同的類型
-G:\auto-pilot\right_straight\weight map\weight map\main.c(32,7): warning C4047: '正在初始化': 'int *' 與 'int (*)[128]' 間接取值的層級不同
-G:\auto-pilot\right_straight\weight map\weight map\main.c(42,7): warning C4047: '正在初始化': 'int *' 與 'int (*)[128]' 間接取值的層級不同
+G:\auto-pilot\right_straight\weight map\weight map\main.c(117,34): warning C4047: '函式': 'int (*)[128]' 與 'int *' 間接取值的層級不同
+G:\auto-pilot\right_straight\weight map\weight map\main.c(117,34): warning C4024: 'hadamardSum': 型式和實質參數 1 不同的類型
+G:\auto-pilot\right_straight\weight map\weight map\main.c(124,19): warning C4047: '函式': 'int (*)[128]' 與 'int *' 間接取值的層級不同
+G:\auto-pilot\right_straight\weight map\weight map\main.c(124,19): warning C4024: 'matrixAdd': 型式和實質參數 1 不同的類型
+G:\auto-pilot\right_straight\weight map\weight map\main.c(126,37): warning C4047: '函式': 'int (*)[128]' 與 'int *' 間接取值的層級不同
+G:\auto-pilot\right_straight\weight map\weight map\main.c(126,37): warning C4024: 'hadamardSum': 型式和實質參數 1 不同的類型
+G:\auto-pilot\right_straight\weight map\weight map\main.c(129,21): warning C4047: '函式': 'int (*)[128]' 與 'int *' 間接取值的層級不同
+G:\auto-pilot\right_straight\weight map\weight map\main.c(129,21): warning C4024: 'matrixMinus': 型式和實質參數 1 不同的類型
+G:\auto-pilot\right_straight\weight map\weight map\main.c(137,37): warning C4047: '函式': 'int (*)[128]' 與 'int *' 間接取值的層級不同
+G:\auto-pilot\right_straight\weight map\weight map\main.c(137,37): warning C4024: 'hadamardSum': 型式和實質參數 1 不同的類型
+G:\auto-pilot\right_straight\weight map\weight map\main.c(140,24): warning C4047: '函式': 'int (*)[128]' 與 'int *' 間接取值的層級不同
+G:\auto-pilot\right_straight\weight map\weight map\main.c(140,24): warning C4024: 'matrixMinus': 型式和實質參數 1 不同的類型
+G:\auto-pilot\right_straight\weight map\weight map\main.c(146,40): warning C4047: '函式': 'int (*)[128]' 與 'int *' 間接取值的層級不同
+G:\auto-pilot\right_straight\weight map\weight map\main.c(146,40): warning C4024: 'hadamardSum': 型式和實質參數 1 不同的類型
+G:\auto-pilot\right_straight\weight map\weight map\main.c(153,22): warning C4047: '函式': 'int (*)[128]' 與 'int *' 間接取值的層級不同
+G:\auto-pilot\right_straight\weight map\weight map\main.c(153,22): warning C4024: 'matrixAdd': 型式和實質參數 1 不同的類型
+G:\auto-pilot\right_straight\weight map\weight map\main.c(30,7): warning C4047: '正在初始化': 'int *' 與 'int (*)[128]' 間接取值的層級不同
+G:\auto-pilot\right_straight\weight map\weight map\main.c(40,7): warning C4047: '正在初始化': 'int *' 與 'int (*)[128]' 間接取值的層級不同
+  LINK : 最後的累加連結找不到或未建置 G:\auto-pilot\right_straight\weight map\x64\Debug\weight map.exe，正在執行完整連結
   weight map.vcxproj -> G:\auto-pilot\right_straight\weight map\x64\Debug\weight map.exe
