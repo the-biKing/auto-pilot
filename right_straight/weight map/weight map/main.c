@@ -19,7 +19,7 @@
 #define RIGHTBIAS 0
 
 void writeMatrixToFile(const char* filename, int matrix[ROWS][COLS]);
-int hadamardSum(int matrix1[ROWS][COLS], int matrix2[ROWS][COLS]);
+int hadamardSum(int staticMatrix[ROWS][COLS], int** mallocMatrix);
 
 int main(void) {
 	//allocate memory for weight map
@@ -27,12 +27,8 @@ int main(void) {
 	int** straightWeightMap = malloc(ROWS * sizeof(int*));
 	if (rightWeightMap == NULL || straightWeightMap == NULL) {
 		printf("Memory allocation failed.\n");
-		if (rightWeightMap != NULL) {
-			free(rightWeightMap);
-		}
-		if (straightWeightMap != NULL) {
-			free(straightWeightMap);
-		}
+		free(rightWeightMap);
+		free(straightWeightMap);
 		return 1;
 	}
 	for (int i = 0; i < ROWS; i++) {
@@ -49,12 +45,21 @@ int main(void) {
 			return 1;
 		}
 	}
+	//store wight map into allocated memory
 	FILE* Rfile = fopen("rightWeightMap.txt", "r");
 	for (int i = 0;i < ROWS;i++) {
 		for (int j = 0;j < COLS;j++) {
 			if (fscanf(Rfile, "%d", &rightWeightMap[i][j]) != 1) {
 				printf("Error reading file.\n");
 				fclose(Rfile);
+				for (int i = 0; i < ROWS; i++) {
+					free(rightWeightMap[i]);
+				}
+				free(rightWeightMap);
+				for (int i = 0; i < ROWS; i++) {
+					free(straightWeightMap[i]);
+				}
+				free(straightWeightMap);
 				return 1;
 			}
 		}
@@ -66,12 +71,20 @@ int main(void) {
 			if (fscanf(Sfile, "%d", &straightWeightMap[i][j]) != 1) {
 				printf("Error reading file.\n");
 				fclose(Sfile);
+				for (int i = 0; i < ROWS; i++) {
+					free(straightWeightMap[i]);
+				}
+				free(straightWeightMap);
+				for (int i = 0; i < ROWS; i++) {
+					free(rightWeightMap[i]);
+				}
+				free(rightWeightMap);
 				return 1;
 			}
 		}
 	}
 	fclose(Sfile);
-	//do the manipulation here
+	//store training data to pointer arrays so it's easier to iterate through them
 	int* straight[STRAIGHTPICNUMBER] = { 
 		matrixS1,
 		matrixS2,
@@ -123,12 +136,12 @@ void writeMatrixToFile(const char* filename, int matrix[ROWS][COLS]) {
 	fclose(file);
 }
 
-int hadamardSum(int matrix1[ROWS][COLS], int matrix2[ROWS][COLS]) {
+int hadamardSum(int staticMatrix[ROWS][COLS], int **mallocMatrix) {
 	int sum = 0;
 
 	for (int i = 0; i < ROWS; i++) {
 		for (int j = 0; j < COLS; j++) {
-			sum += matrix1[i][j] * matrix2[i][j];
+			sum += staticMatrix[i][j] * mallocMatrix[i][j];
 		}
 	}
 
