@@ -19,14 +19,12 @@
 #define RIGHTBIAS 0
 
 void writeMatrixToFile(const char* filename, int matrix[ROWS][COLS]);
-int hadamardSum(int matrix1[ROWS][COLS], int matrix2[ROWS][COLS]);
+int hadamardSum(int staticMatrix[ROWS][COLS], int** mallocMatrix);
 void matrixAdd(int src[ROWS][COLS], int destination[ROWS][COLS]);
 void matrixMinus(int src[ROWS][COLS], int destination[ROWS][COLS]);
 
 
 int main(void) {
-	int rightWeightMap[128][128];
-	int straightWeightMap[128][128];
 	int rightResult;
 	int straightResult;
 	int* straight[STRAIGHTPICNUMBER] = { 
@@ -48,14 +46,47 @@ int main(void) {
 		matrixR6
 	};
 	int calculatedTime=0;
-RECALCULATE:
+    RECALCULATE:
 	calculatedTime = calculatedTime + 1;
+	//allocate memory for weight map
+	int** rightWeightMap = malloc(ROWS * sizeof(int*));
+	int** straightWeightMap = malloc(ROWS * sizeof(int*));
+	if (rightWeightMap == NULL || straightWeightMap == NULL) {
+		printf("Memory allocation failed.\n");
+		free(rightWeightMap);
+		free(straightWeightMap);
+		return 1;
+	}
+	for (int i = 0; i < ROWS; i++) {
+		rightWeightMap[i] = malloc(COLS * sizeof(int));
+		straightWeightMap[i] = malloc(COLS * sizeof(int));
+		if (rightWeightMap[i] == NULL || straightWeightMap[i] == NULL) {
+			printf("Memory allocation failed.\n");
+			for (int j = 0; j < i; j++) {
+				free(rightWeightMap[j]);
+				free(straightWeightMap[j]);
+			}
+			free(rightWeightMap);
+			free(straightWeightMap);
+			return 1;
+		}
+	}
+	//store wight map into allocated memory
+
 	FILE* Rfile = fopen("rightWeightMap.txt", "r");
 	for (int i = 0;i < ROWS;i++) {
 		for (int j = 0;j < COLS;j++) {
 			if (fscanf(Rfile, "%d", &rightWeightMap[i][j]) != 1) {
 				printf("Error reading file.\n");
 				fclose(Rfile);
+				for (int i = 0; i < ROWS; i++) {
+					free(rightWeightMap[i]);
+				}
+				free(rightWeightMap);
+				for (int i = 0; i < ROWS; i++) {
+					free(straightWeightMap[i]);
+				}
+				free(straightWeightMap);
 				return 1;
 			}
 		}
@@ -67,6 +98,14 @@ RECALCULATE:
 			if (fscanf(Sfile, "%d", &straightWeightMap[i][j]) != 1) {
 				printf("Error reading file.\n");
 				fclose(Sfile);
+				for (int i = 0; i < ROWS; i++) {
+					free(straightWeightMap[i]);
+				}
+				free(straightWeightMap);
+				for (int i = 0; i < ROWS; i++) {
+					free(rightWeightMap[i]);
+				}
+				free(rightWeightMap);
 				return 1;
 			}
 		}
@@ -116,6 +155,14 @@ RECALCULATE:
 	}
 	writeMatrixToFile("rightWeightMap.txt", rightWeightMap);
 	writeMatrixToFile("straightWeightMap.txt", straightWeightMap);
+
+	for (int i = 0; i < ROWS; i++) {
+		free(rightWeightMap[i]);
+		free(straightWeightMap[i]);
+	}
+	free(rightWeightMap);
+	free(straightWeightMap);
+
 	if (correctNum < 2*(STRAIGHTPICNUMBER + RIGHTPICNUMBER)) {
 		goto RECALCULATE;
 	}
@@ -131,7 +178,7 @@ RECALCULATE:
 	return 0;
 }
 
-void writeMatrixToFile(const char* filename, int matrix[ROWS][COLS]) {
+void writeMatrixToFile(const char* filename, int **matrix) {
 	FILE* file = fopen(filename, "w");
 	if (file == NULL) {
 		printf("Error opening file.\n");
@@ -148,26 +195,26 @@ void writeMatrixToFile(const char* filename, int matrix[ROWS][COLS]) {
 	fclose(file);
 }
 
-int hadamardSum(int matrix1[ROWS][COLS], int matrix2[ROWS][COLS]) {
+int hadamardSum(int staticMatrix[ROWS][COLS], int **mallocMatrix) {
 	int sum = 0;
 
 	for (int i = 0; i < ROWS; i++) {
 		for (int j = 0; j < COLS; j++) {
-			sum += matrix1[i][j] * matrix2[i][j];
+			sum += staticMatrix[i][j] * mallocMatrix[i][j];
 		}
 	}
 
 	return sum;
 }
 
-void matrixAdd(int src[ROWS][COLS], int destination[ROWS][COLS]) {
+void matrixAdd(int src[ROWS][COLS], int **destination) {
 	for (int i = 0; i < ROWS; ++i) {
 		for (int j = 0; j < COLS; ++j) {
 			destination[i][j] = src[i][j] + destination[i][j];
 		}
 	}
 }
-void matrixMinus(int src[ROWS][COLS], int destination[ROWS][COLS]) {
+void matrixMinus(int src[ROWS][COLS], int **destination) {
 	for (int i = 0; i < ROWS; ++i) {
 		for (int j = 0; j < COLS; ++j) {
 			destination[i][j] = destination[i][j] - src[i][j];
